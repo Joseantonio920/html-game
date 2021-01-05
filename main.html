@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jogo</title>
+	</heat>
+	<body>
+		<canvas id="canvas", style="border:10px solid #000000;">></canvas>
+		<script>
+			var width=320, height=240;
+			var tela=document.getElementById("canvas");
+			tela.width=width;
+			tela.height=height;
+			var ctx=tela.getContext("2d")
+			
+			var x=width/2-5;
+			var y=height/2-5;
+			var tecla=null;
+			document.addEventListener("keypress", function(event){tecla=event.keyCode;});
+			document.addEventListener("keyup", function(){tecla=null;});
+			
+			//document.addEventListener("mousedown", function(){alert("vc apertou o botao do mouse");});
+			function draw(){
+				ctx.clearRect(0, 0, width, height)
+				
+				ctx.fillRect(x, y, 10, 10);
+			}
+			function update(){
+				if(tecla==65){
+					x-=2;
+				}else if(tecla==68){
+					x+=2;
+				}else if(tecla==87){
+					y-=2;
+				}else if(tecla==83){
+					y+=2;
+				}
+			}
+			function game(){
+				draw();
+				update();
+				window.requestAnimationFrame(game);
+			}
+			window.requestAnimationFrame(game);
+		</script>
+	</body>
+</html>
